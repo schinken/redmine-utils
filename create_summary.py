@@ -1,6 +1,10 @@
 import requests
 import settings
-import datetime.datetime
+
+import dateutil.parser
+from datetime import datetime, timedelta
+
+lastrun = timedelta(days=7)
 
 project = 'backspace'
  
@@ -15,6 +19,7 @@ api_auth = (settings.http_user, settings.http_pass)
 
 # retrieve issues
 issues = []
+datefields = ['created_on', 'updated_on', 'closed_on']
 
 offset = 0
 offset_add = 100
@@ -27,6 +32,11 @@ while offset < total_count:
                           verify=False).json()
  
     for issue in result['issues']:
+
+        for field in datefields:
+            if field in issue:
+                issue[field] = dateutil.parser.parse(issue[field])
+
         issues.append(issue)
 
     offset = result['offset']
@@ -38,4 +48,5 @@ while offset < total_count:
     offset += offset_add
 
 
+print issues
 
