@@ -12,7 +12,7 @@ from collections import defaultdict
 
 project = 'backspace'
 
-api_issues = settings.http_url+'/projects/'+project+'/issues.json?status_id=*'
+api_issues = settings.http_url+'/projects/'+project+'/issues.json?&set_filter=1&f[]=status_id&op[status_id]=*&f[]=is_private&op[is_private]=%3D&v[is_private][]=0'
 api_auth = (settings.http_user, settings.http_pass)
 
 # We explicitly don't use the API key here to access the tickets, to avoid
