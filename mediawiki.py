@@ -12,7 +12,7 @@ from collections import defaultdict
 
 project = 'backspace'
 
-api_issues = settings.http_url+'/projects/'+project+'/issues.json?&set_filter=1&f[]=status_id&op[status_id]=*&f[]=is_private&op[is_private]=%3D&v[is_private][]=0'
+api_issues = settings.http_url+'/projects/'+project+'/issues.json?set_filter=1&f[]=status_id&op[status_id]=*&f[]=is_private&op[is_private]=%3D&v[is_private][]=0'
 api_auth = (settings.http_user, settings.http_pass)
 
 api_header = {'X-Redmine-API-Key': settings.api_key}
