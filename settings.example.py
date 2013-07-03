@@ -6,5 +6,6 @@ http_pass = ''
 
 mediawiki_user = http_user
 mediawiki_pass = http_pass
+mediawiki_page = 'Todo'
 
 api_key = ''
