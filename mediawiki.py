@@ -25,7 +25,7 @@ wiki_time = datetime.now()
 wiki_update = False
 
 site = mwclient.Site('www.hackerspace-bamberg.de', path='/')
-site.login('Restapi', settings.mediawiki_pass)
+site.login(settings.mediawiki_user, settings.mediawiki_pass)
 
 page = site.Pages[settings.mediawiki_page]
 for rev in page.revisions(limit=1):
