@@ -12,8 +12,8 @@
 |-
 | [https://redmine.hackerspace-bamberg.de/issues/{{issue['id']}} {{issue['subject']}}]
 | [[Benutzer:{{issue['author']['name']}}|{{issue['author']['name']}}]]
-| {{issue['status']['name']}}
 | {% if 'assigned_to' in issue %}[[Benutzer:{{issue['assigned_to']['name']}}|{{issue['assigned_to']['name']}}]]{% else %} &mdash; {% endif %}
+| {{issue['status']['name']}}
 | {{issue['created_on']|redminedate}}
 | {{issue['updated_on']|redminedate}}
 {%endfor%}
