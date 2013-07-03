@@ -4,4 +4,7 @@ http_url = 'https://redmine.hackerspace-bamberg.de'
 http_user = ''
 http_pass = ''
 
+mediawiki_user = http_user
+mediawiki_pass = http_pass
+
 api_key = ''
