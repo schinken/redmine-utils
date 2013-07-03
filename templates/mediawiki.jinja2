@@ -1,0 +1,19 @@
+
+{% for tracker in issues.iterkeys()|sort %}
+== {{tracker}} ==
+{|class="wikitable sortable"
+! title
+! author
+! status
+! created
+! updated
+{% for issue in issues[tracker] %}
+|-
+| [https://redmine.hackerspace-bamberg.de/issues/{{issue['id']}} {{issue['subject']}}]
+| [[Benutzer:{{issue['author']['name']}}|{{issue['author']['name']}}]]
+| {{issue['status']['name']}}
+| {{issue['created_on']|redminedate}}
+| {{issue['updated_on']|redminedate}}
+{%endfor%}
+|}
+{%endfor%}
