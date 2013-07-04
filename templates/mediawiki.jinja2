@@ -2,6 +2,7 @@
 {% for tracker in issues.iterkeys()|sort %}
 == {{tracker}} ==
 {|class="wikitable sortable" style="width:100%"
+! id
 ! title
 ! author
 ! assignee
@@ -10,6 +11,7 @@
 ! updated
 {% for issue in issues[tracker] %}
 |-
+| [https://redmine.hackerspace-bamberg.de/issues/{{issue['id']}} #{{issue['id']}}]
 | [https://redmine.hackerspace-bamberg.de/issues/{{issue['id']}} {{issue['subject']}}]
 | [[Benutzer:{{issue['author']['name']}}|{{issue['author']['name']}}]]
 | {% if 'assigned_to' in issue %}[[Benutzer:{{issue['assigned_to']['name']}}|{{issue['assigned_to']['name']}}]]{% else %} &mdash; {% endif %}
