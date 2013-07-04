@@ -1,7 +1,7 @@
 import requests
 import settings
 import mwclient
-
+import os
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -65,7 +65,8 @@ while offset < total_count:
     offset += offset_add
 
 
-env = Environment(loader=FileSystemLoader('templates'))
+templates_dir = os.path.join(os.path.dirname(__file__), 'templates')
+env = Environment(loader=FileSystemLoader(templates_dir))
 
 def format_redmine_date(value):
     dt = parser.parse(value)
