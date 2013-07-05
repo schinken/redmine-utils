@@ -1,29 +1,33 @@
 Hallo,
 
-hier eine summary der letzten {{days}} Tage.
+hier einen kleinen Überblick über unsere aktuellen Aufgaben im Space.
 
 
-Erledigte Tickets:
------------------
-{% if tickets['closed'] %}
-{% for ticket in tickets['closed'] %}
-* {{ticket['created_on']}} - {{ticket['title']}}
+Neusten 3 offenen Tickets
+-------------------------
+
+{% for issue in issues|sort(attribute='created_on', reverse=True)
+  if issue.status.name == 'new' and not issue.assigned_to -%}
+* [{{issue.created_on[:10]}}] - #{{issue.id}} {{issue.subject}}
+{%- if loop.index == 3 %}{% break %}{% endif %}
 {% endfor %}
-{% elif tickets['open'] %}
-  Es wurden keine Tickets in den letzten {{days}} geschlossen, obwohl noch
-  {{length(tickets['open'])}} Tickets offen sind.
-{% else %}
-  Es wurden keine Tickets geschlossen, da es keine verbleidenden offenen 
-  Tickets gibt
-{% endif %}
 
-Offene Tickets:
------------------
-{% if tickets['open'] %}
-{% for ticket in tickets['open'] %}
-* {{ticket['closed_on']}} {{ticket['title']}}
+
+Ältesten 3 offenen Tickets
+--------------------------
+
+{% for issue in issues|sort(attribute='created_on', reverse=False)
+  if issue.status.name == 'new' and not issue.assigned_to -%}
+* [{{issue.created_on[:10]}}] - #{{issue.id}} {{issue.subject}}
+{%- if loop.index == 3 %}{% break %}{% endif %}
 {% endfor %}
-{% else %}
-  Zur Zeit gibt es keine offenen Tickets! WoW!
-{% endif %}
+
+
+Du willst mehr? Schau doch in unser Ticketsystem:
+
+   https://redmine.hackerspace-bamberg.de
+
+
+PS: Die folgende Mail ist automatisch generiert und auch ohne Unterschrift gültig.
+
 
