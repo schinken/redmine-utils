@@ -9,7 +9,8 @@
 ! status
 ! created
 ! updated
-{% for issue in issues[tracker] %}
+{% for issue in issues[tracker] 
+   if not issue.category or issue.category.name[:4] != 'int.' -%}
 |-
 | [https://redmine.hackerspace-bamberg.de/issues/{{issue['id']}} #{{issue['id']}}]
 | [https://redmine.hackerspace-bamberg.de/issues/{{issue['id']}} {{issue['subject']}}]
