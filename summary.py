@@ -1,4 +1,3 @@
-import requests
 import settings
 import redmine
 import os
