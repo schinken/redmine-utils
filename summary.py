@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import settings
 import redmine
 import os
@@ -11,4 +12,4 @@ env = Environment(loader=FileSystemLoader(templates_dir),
                   extensions=['jinja2.ext.loopcontrols'])
 
 template = env.get_template('summary.jinja2')
-print template.render(issues=redmine.get_issues(project))
+print template.render(issues=redmine.get_issues(project)).encode('utf-8')
