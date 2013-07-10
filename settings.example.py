@@ -9,3 +9,11 @@ mediawiki_pass = http_pass
 mediawiki_page = 'Todo'
 
 api_key = ''
+
+summary_host = 'localhost'
+summary_port = 25
+
+summary_subject = 'Weekly Ticket Summary'
+summary_from = 'redmine@example.com'
+summary_to = 'internal@example.com'
+summary_reference = ''
