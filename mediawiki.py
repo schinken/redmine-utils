@@ -32,11 +32,11 @@ issues_by_category = defaultdict(list)
 # retrieve issues
 for issue in redmine.get_issues(project):
 
-    if 'closed_on' in issue:
-        continue
-
     if parser.parse(issue['updated_on']).replace(tzinfo=None) > wiki_time:
         wiki_update = True
+
+    if 'closed_on' in issue:
+        continue
 
     tracker = issue['tracker']['name']
     issues_by_category[tracker].append(issue)
