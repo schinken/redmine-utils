@@ -8,7 +8,7 @@ Neusten 3 offenen Tickets
 
 {% for issue in issues|sort(attribute='created_on', reverse=True)
   if issue.status.name == 'new' and not issue.assigned_to -%}
-* [{{issue.created_on[:10]}}] - #{{issue.id}} {{issue.subject}}
+* [{{issue.created_on[:10]}}] - #{{"%-4d"|format(issue.id)}} {{issue.subject}}
 {%- if loop.index == 3 %}{% break %}{% endif %}
 {% endfor %}
 
@@ -18,10 +18,18 @@ Neusten 3 offenen Tickets
 
 {% for issue in issues|sort(attribute='created_on', reverse=False)
   if issue.status.name == 'new' and not issue.assigned_to -%}
-* [{{issue.created_on[:10]}}] - #{{issue.id}} {{issue.subject}}
+* [{{issue.created_on[:10]}}] - #{{"%-4d"|format(issue.id)}} {{issue.subject}}
 {%- if loop.index == 3 %}{% break %}{% endif %}
 {% endfor %}
 
+
+Erledigte Tickets der letzten 7 Tage
+------------------------------------
+
+{% for issue in issues|selectattr('closed_on')|sort(attribute='closed_on', reverse=True)
+  if issue.status.name == 'done' and issue.closed_on[:10] >= week_ago -%}
+  * [{{issue.closed_on[:10]}}] - #{{"%-4d"|format(issue.id)}} {{issue.subject}}
+{% endfor %}
 
 Du willst mehr? Schau doch in unser Ticketsystem:
 
