@@ -28,7 +28,7 @@ Erledigte Tickets der letzten 7 Tage
 
 {% for issue in issues|selectattr('closed_on')|sort(attribute='closed_on', reverse=True)
   if issue.status.name == 'done' and issue.closed_on[:10] >= week_ago -%}
-  * [{{issue.closed_on[:10]}}] - #{{"%-4d"|format(issue.id)}} {{issue.subject}}
+  * [{{issue.closed_on[:10]}}] - #{{"%-4d"|format(issue.id)}} {{issue.subject}} ({{issue.assigned_to.name|default('none')}})
 {% endfor %}
 
 Du willst mehr? Schau doch in unser Ticketsystem:
