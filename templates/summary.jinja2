@@ -1,7 +1,16 @@
 Hallo,
 
 hier einen kleinen Überblick über unsere aktuellen Aufgaben im Space.
+{% for issue in issues|sort(attribute='created_on', reverse=False)
+if issue.status.name == 'new' and not issue.assigned_to and '★' in issue.subject -%}
+{% if loop.index == 1 %}
 
+Offene Tickets mit Belohnung
+----------------------------
+
+{% endif -%}
+* [{{issue.created_on[:10]}}] - #{{"%-4d"|format(issue.id)}} {{issue.subject}}
+{% endfor %}
 
 Neusten 3 offenen Tickets
 -------------------------
