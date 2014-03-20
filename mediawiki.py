@@ -28,6 +28,7 @@ offset_add = 100
 total_count = 1
 
 issues_by_category = defaultdict(list)
+closed_issues = []
 
 # retrieve issues
 for issue in redmine.get_issues(project):
@@ -36,11 +37,13 @@ for issue in redmine.get_issues(project):
         wiki_update = True
 
     if 'closed_on' in issue:
+        closed_issues.append(issue)
         continue
 
     tracker = issue['tracker']['name']
     issues_by_category[tracker].append(issue)
 
+wiki_update = True
 
 templates_dir = os.path.join(os.path.dirname(__file__), 'templates')
 env = Environment(loader=FileSystemLoader(templates_dir))
@@ -58,5 +61,15 @@ if wiki_update:
 
     template = env.get_template('mediawiki.jinja2')
     tpl_result = template.render(issues=issues_by_category)
+
     page.save(tpl_result, summary='Ticket changed')
+
+    if settings.mediawiki_page_closed:
+        page_closed = site.Pages[settings.mediawiki_page_closed]
+
+        template = env.get_template('mediawiki_closed.jinja2')
+        tpl_result = template.render(issues=closed_issues)
+
+        page_closed.save(tpl_result, summary='Ticket changed')
+
 
