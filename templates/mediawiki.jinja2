@@ -13,7 +13,7 @@
    if not issue.category or issue.category.name[:4] != 'int.' -%}
 |-
 | [https://redmine.hackerspace-bamberg.de/issues/{{issue['id']}} #{{issue['id']}}]
-| [https://redmine.hackerspace-bamberg.de/issues/{{issue['id']}} {{issue['subject']}}]
+| [https://redmine.hackerspace-bamberg.de/issues/{{issue['id']}} {{issue['subject']|truncate(42+10,True)}}]
 | [[Benutzer:{{issue['author']['name']}}|{{issue['author']['name']}}]]
 | {% if 'assigned_to' in issue %}[[Benutzer:{{issue['assigned_to']['name']}}|{{issue['assigned_to']['name']}}]]{% else %} &mdash; {% endif %}
 | {{issue['status']['name']}}
