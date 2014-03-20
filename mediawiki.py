@@ -43,7 +43,6 @@ for issue in redmine.get_issues(project):
     tracker = issue['tracker']['name']
     issues_by_category[tracker].append(issue)
 
-wiki_update = True
 
 templates_dir = os.path.join(os.path.dirname(__file__), 'templates')
 env = Environment(loader=FileSystemLoader(templates_dir))
