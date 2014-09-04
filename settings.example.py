@@ -18,3 +18,7 @@ summary_subject = 'Weekly Ticket Summary'
 summary_from = 'redmine@example.com'
 summary_to = 'internal@example.com'
 summary_reference = ''
+
+ldap_uri = 'ldaps://foo.bar.baz'
+ldap_dn = 'cn=bla,ou=foo,dc=backspace'
+ldap_pw = 'neverGonnaGiveYouUp'
