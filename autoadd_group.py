@@ -7,7 +7,7 @@ users_existing = []
 users_ingroup = []
 id_to_nick = {}
 
-api_user = settings.http_url+'/users.json'
+api_user = settings.http_url+'/users.json?limit=1000'
 api_group = settings.http_url+'/groups/'+str(group)+'.json?include=users'
 api_user_add = settings.http_url+'/groups/'+str(group)+'/users.xml'
 
