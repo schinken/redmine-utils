@@ -15,7 +15,7 @@ project = 'backspace'
 wiki_time = datetime.now()
 wiki_update = False
 
-site = mwclient.Site('www.hackerspace-bamberg.de', path='/')
+site = mwclient.Site(('https', 'www.hackerspace-bamberg.de'), path='/')
 site.login(settings.mediawiki_user, settings.mediawiki_pass)
 
 page = site.Pages[settings.mediawiki_page]
