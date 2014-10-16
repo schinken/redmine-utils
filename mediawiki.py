@@ -10,6 +10,10 @@ from datetime import datetime
 from dateutil import parser
 from collections import defaultdict
 
+# Disable HTTPS verification warnings.
+from requests.packages import urllib3
+urllib3.disable_warnings()
+
 project = 'backspace'
 
 wiki_time = datetime.now()
