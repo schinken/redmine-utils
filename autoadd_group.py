@@ -1,6 +1,10 @@
 import requests
 import settings
 
+# Disable HTTPS verification warnings.
+from requests.packages import urllib3
+urllib3.disable_warnings()
+
 group = 15
  
 users_existing = []

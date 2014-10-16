@@ -6,6 +6,10 @@ import time
 import ldap
 import sys
 
+# Disable HTTPS verification warnings.
+from requests.packages import urllib3
+urllib3.disable_warnings()
+
 api_user = settings.http_url+'/users.json'
 api_header = {
     'X-Redmine-API-Key': settings.api_key,
