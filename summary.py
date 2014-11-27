@@ -8,6 +8,10 @@ import datetime
 from email.mime.text import MIMEText
 from jinja2 import Environment, FileSystemLoader
 
+# Disable HTTPS verification warnings.
+from requests.packages import urllib3
+urllib3.disable_warnings()
+
 project = 'backspace'
 
 templates_dir = os.path.join(os.path.dirname(__file__), 'templates')
