@@ -34,6 +34,10 @@ for user in users['users']:
 users = con.search_s('ou=member,dc=backspace', ldap.SCOPE_SUBTREE, '(&(objectClass=backspaceMember)(serviceEnabled=redmine))', ['uid', 'mlAddress'])
 for user in users:
     uid = user[1]['uid'][0]
+
+    if not user[1]['mlAddress']:
+        continue
+
     mail = user[1]['mlAddress'][0]
 
     if uid in existing_users:
