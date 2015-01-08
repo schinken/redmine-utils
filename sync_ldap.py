@@ -31,14 +31,14 @@ users = requests.get(api_user + '?limit=1000', auth=api_auth, headers=api_header
 for user in users['users']:
     existing_users.append(user['login'])
 
-users = con.search_s('ou=member,dc=backspace', ldap.SCOPE_SUBTREE, '(&(objectClass=backspaceMember)(serviceEnabled=redmine))', ['uid', 'mlAddress'])
+users = con.search_s('ou=member,dc=backspace', ldap.SCOPE_SUBTREE, '(&(objectClass=backspaceMember)(serviceEnabled=redmine))', ['uid', 'mlAddress', 'alternateEmail'])
 for user in users:
     uid = user[1]['uid'][0]
 
-    if not user[1]['mlAddress']:
-        continue
-
-    mail = user[1]['mlAddress'][0]
+    if user[1]['mlAddress']:
+        mail = user[1]['mlAddress'][0]
+    else:
+        mail = user[1]['alternateEmail'][0]
 
     if uid in existing_users:
         continue
