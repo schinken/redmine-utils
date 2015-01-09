@@ -35,7 +35,7 @@ users = con.search_s('ou=member,dc=backspace', ldap.SCOPE_SUBTREE, '(&(objectCla
 for user in users:
     uid = user[1]['uid'][0]
 
-    if user[1]['mlAddress']:
+    if 'mlAddress' in user[1]:
         mail = user[1]['mlAddress'][0]
     else:
         mail = user[1]['alternateEmail'][0]
