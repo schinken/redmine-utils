@@ -30,6 +30,13 @@ users = requests.get(api_user + '?limit=1000', auth=api_auth, headers=api_header
  
 for user in users['users']:
     existing_users.append(user['login'])
+    
+# include locked users
+users = requests.get(api_user + '?limit=1000&status=3', auth=api_auth, headers=api_header,
+                    verify=False).json()
+
+for user in users['users']:
+    existing_users.append(user['login'])
 
 users = con.search_s('ou=member,dc=backspace', ldap.SCOPE_SUBTREE, '(&(objectClass=backspaceMember)(serviceEnabled=redmine))', ['uid', 'mlAddress', 'alternateEmail'])
 for user in users:
