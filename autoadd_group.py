@@ -26,6 +26,16 @@ for user in users['users']:
     uid = user['id']
     id_to_nick[uid] = user['login']
     users_existing.append(uid)
+    
+# include locked users
+users = requests.get(api_user + "&status=3", auth=api_auth, headers=api_header,
+                    verify=False).json()
+
+for user in users['users']:
+    uid = user['id']
+    id_to_nick[uid] = user['login']
+    users_existing.append(uid)
+
  
 # retrieve users for groups
 groups = requests.get(api_group, auth=api_auth,headers=api_header,
