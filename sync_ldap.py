@@ -25,12 +25,19 @@ con.bind(settings.ldap_dn, settings.ldap_pw)
 
 # retrieve users
 existing_users = []
-users = requests.get(api_user + '?limit=1000', auth=api_auth, headers=api_header,
-                    verify=False).json()
- 
-for user in users['users']:
-    existing_users.append(user['login'])
-    
+users = []
+offset = 0
+
+while offset == 0 or users['users']:
+    users = requests.get(api_user + '?limit=100&offset=' + str(offset), auth=api_auth, headers=api_header,
+                        verify=False).json()
+
+    for user in users['users']:
+        existing_users.append(user['login'])
+
+    offset += 100
+
+
 # include locked users
 users = requests.get(api_user + '?limit=1000&status=3', auth=api_auth, headers=api_header,
                     verify=False).json()
